@@ -6,8 +6,8 @@ Qualification Reports recreated with every new OSP Release
 
 - Create a new branch from the `create-reports` branch (for instance, `my-reports`)
   - Define the appropriate OSP environment and tools by updating `tools.csv`
-  - Define the models and projects by updating `models.csv`
-  - Go to the Github Action: [Qualification Reports](https://github.com/Open-Systems-Pharmacology/OSP-Qualification-Reports/actions/workflows/create-reports.yaml)
+  - Define the qualifications by updating `qualifications.csv`
+  - Go to the Github Action: [Qualification Reports](https://github.com/Open-Systems-Pharmacology/OSP-Qualification-Reports/actions/workflows/create-reports.yml)
     - Click on the button __Run workflow__ 
       - Select your branch in the first step (for instance, `my-reports`)
       - Click on the green button __Run workflow__ 
@@ -17,9 +17,9 @@ Qualification Reports recreated with every new OSP Release
 When the qualification reports are created, pull requests are triggered (one pull request for each qualification report) toward the `develop` branch.
 The pull requests will allow users to review the updates in the reports and adopt the new version.
 
-## Models
+## Qualifications
 
-The `models.csv` file indicates which qualification plans should be processed.
+The `qualifications.csv` file indicates which qualification plans should be processed.
 The header includes the following fields:
 
 - __Execute__: If `TRUE` run the qualification. If `FALSE`, skip the qualification.
@@ -27,10 +27,8 @@ The header includes the following fields:
 - __Released version__: Tag version of the qualificaion plan repository, e.g. `1.0`
 - __Workflow name__: Path of workflow R script that creates the function to run the qualification if not default.
 > [!TIP]
-> Leave blank cell if default path, `Qualification/workflow.R`, is used (this path is case insensitive). 
-- __Additional projects__: Url of additional project snapshots to export as `pksim5` projects, e.g. `Propofol-Pediatrics/refs/tags/v1.0/Propofol-Pediatrics.json`
-> [!TIP]
-> If multiple projects are exported, they need to be separated by a pipe character: `|`, e.g. `X-Pediatrics.json|Y-Pediatrics.json`
+> Leave blank cell if default path, `Qualification/workflow.R`, is used (this path is case insensitive).
+- __Folder name__: Name of exported folder within [OSP-Qualification-Reports](https://github.com/Open-Systems-Pharmacology/OSP-Qualification-Reports) repository, e.g. `Qualification-CKD` for [OSP-Qualification-Reports/Qualification-CKD](https://github.com/Open-Systems-Pharmacology/OSP-Qualification-Reports/tree/master/Qualification-CKD)
 
 ## Tools 
 
