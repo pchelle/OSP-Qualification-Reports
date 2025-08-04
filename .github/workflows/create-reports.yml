@@ -73,9 +73,9 @@ jobs:
         git fetch origin develop
         git rebase -Xours origin/develop
         git reset HEAD^
-        [ -d "${{ matrix['Repository name'] }}" ] && rm -rf ${{ matrix['Repository name'] }}/*
-        git add ${{ matrix['Repository name'] }} || echo "No file in ${{ matrix['Repository name'] }}"
-        git commit -m "Update ${{ matrix['Repository name'] }}" || echo "No changes to commit"
+        [ -d "${{ matrix['Folder name'] }}" ] && rm -rf ${{ matrix['Folder name'] }}/*
+        git add ${{ matrix['Folder name'] }} || echo "No file in ${{ matrix['Folder name'] }}"
+        git commit -m "Update ${{ matrix['Folder name'] }}" || echo "No changes to commit"
       shell: bash
 
     - id: qualification-environment
@@ -90,7 +90,7 @@ jobs:
       with:
           model-repo: ${{ matrix['Repository name'] }}
           model-version: ${{ matrix['Released version'] }}
-          snapshot: ${{ matrix['Repository name'] }}
+          snapshot: ${{ matrix['Folder name'] }}
           evaluation: 'false'
           workflow-script: ${{ matrix['Workflow name'] }}
           pk-sim-version: ${{ needs.read_inputs.outputs.pk_sim_version }}
@@ -116,10 +116,10 @@ jobs:
         branch: ${{ github.ref_name }}-${{ matrix['Repository name'] }}
         base: develop
         add-paths: |
-            ${{ matrix['Repository name'] }}/images/**
-            ${{ matrix['Repository name'] }}/report.pdf
-            ${{ matrix['Repository name'] }}/report.md
-        title: Update Qualification Report for ${{ matrix['Repository name'] }}
+            ${{ matrix['Folder name'] }}/images/**
+            ${{ matrix['Folder name'] }}/report.pdf
+            ${{ matrix['Folder name'] }}/report.md
+        title: Update Qualification Report for ${{ matrix['Folder name'] }}
         body: |
           ## Tools
           ${{ needs.read_inputs.outputs.tools_table }}
