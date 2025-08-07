@@ -40,6 +40,7 @@ jobs:
         
     - name: Read and export qualifications as json
       run: |
+        Rscript -e 'install.packages("jsonlite")'
         Rscript -e '
         qualificationsData <- read.csv("qualifications.csv", check.names = FALSE, stringsAsFactors = FALSE, colClasses = c("logical", rep("character", 4)))
         cat(jsonlite::toJSON(qualificationsData[qualificationsData$Execute, ], dataframe = "rows"))
